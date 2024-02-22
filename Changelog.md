@@ -135,6 +135,7 @@
 - Update cluster-autoscaler v1.29.0 for eks 1.28
 - Add customer tenant to the Opensearch
 - Add nginx ingress signal 9 alert
+- No data on Karpenter Grafana dashboards
 
 _Changes:_
 
