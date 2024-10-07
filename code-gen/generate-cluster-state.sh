@@ -1393,7 +1393,6 @@ for ENV_OR_BRANCH in ${SUPPORTED_ENVIRONMENT_TYPES}; do
     echo >> "${BASE_ENV_VARS}"
     echo "IS_BELUGA_ENV=true" >> "${BASE_ENV_VARS}"
 
-    sed -i.bak -e "/disable-karpenter/ s|^#*|#|g" "${K8S_CONFIGS_DIR}/base/cluster-tools/karpenter/kustomization.yaml"
     sed -i.bak -e "/disable-kubedownscaler/ s|^#*|#|g" "${K8S_CONFIGS_DIR}/base/cluster-tools/kube-downscaler/kustomization.yaml"
 
     rm -f "${K8S_CONFIGS_DIR}/base/cluster-tools/karpenter/kustomization.yaml.bak"
