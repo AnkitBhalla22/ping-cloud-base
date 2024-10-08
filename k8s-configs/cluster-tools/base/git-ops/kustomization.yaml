@@ -8,8 +8,6 @@ resources:
 
 generatorOptions:
   disableNameSuffixHash: true
-  annotations:
-     argocd.argoproj.io/hook: PreSync
 
 configMapGenerator:
 - name: git-ops-command

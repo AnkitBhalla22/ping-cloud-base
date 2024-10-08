@@ -154,6 +154,7 @@
 #                                  |                                                    |
 # KARPENTER_CONTROLLER_IAM_ROLE    | IAM role that the Karpenter controller will use to | KarpenterControllerRole
 #                                  | provision new instances                            |
+#                                  |                                                    |
 # LOG_ARCHIVE_URL                  | The URL of the log archives. If provided, logs are | The string "unused".
 #                                  | periodically captured and sent to this URL. For    |
 #                                  | AWS S3 buckets, it must be an S3 URL, e.g.         |
