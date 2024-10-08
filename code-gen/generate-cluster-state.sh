@@ -154,9 +154,6 @@
 #                                  |                                                    |
 # KARPENTER_CONTROLLER_IAM_ROLE    | IAM role that the Karpenter controller will use to | KarpenterControllerRole
 #                                  | provision new instances                            |
-#                                  |                                                    |
-# KARPENTER_ENABLED                | Controls whether Karpenter is enabled or disabled  | false    
-#                                  |                                                    |
 # LOG_ARCHIVE_URL                  | The URL of the log archives. If provided, logs are | The string "unused".
 #                                  | periodically captured and sent to this URL. For    |
 #                                  | AWS S3 buckets, it must be an S3 URL, e.g.         |
@@ -447,7 +444,6 @@ ${IRSA_EXTERNAL_DNS_ANNOTATION_KEY_VALUE}
 ${IRSA_THANOS_ANNOTATION_KEY_VALUE}
 ${IRSA_CLUSTER_AUTOSCALER_KEY_VALUE}
 ${KARPENTER_ROLE_ANNOTATION_KEY_VALUE}
-${KARPENTER_ENABLED}
 ${NLB_NGX_PUBLIC_ANNOTATION_KEY_VALUE}
 ${PF_PROVISIONING_ENABLED}
 ${RADIUS_PROXY_ENABLED}
@@ -771,7 +767,6 @@ echo "Initial NLB_NGX_PUBLIC_ANNOTATION_KEY_VALUE: ${NLB_NGX_PUBLIC_ANNOTATION_K
 echo "Initial CLUSTER_ENDPOINT: ${CLUSTER_ENDPOINT}"
 echo "Initial KARPENTER_INSTANCE_PROFILE: ${KARPENTER_INSTANCE_PROFILE}"
 echo "Initial KARPENTER_CONTROLLER_IAM_ROLE: ${KARPENTER_CONTROLLER_IAM_ROLE}"
-echo "Initial KARPENTER_ENABLED: ${KARPENTER_ENABLED}"
 echo "Initial DEFAULT_CLUSTER_UPTIME: ${DEFAULT_CLUSTER_UPTIME}"
 
 echo "Initial SLACK_CHANNEL: ${SLACK_CHANNEL}"
@@ -903,7 +898,6 @@ export PF_PROVISIONING_ENABLED="${PF_PROVISIONING_ENABLED:-false}"
 export RADIUS_PROXY_ENABLED="${RADIUS_PROXY_ENABLED:-false}"
 export ARGOCD_BOOTSTRAP_ENABLED="${ARGOCD_BOOTSTRAP_ENABLED:-true}"
 export EXTERNAL_INGRESS_ENABLED="${EXTERNAL_INGRESS_ENABLED:-""}"
-export KARPENTER_ENABLED="${KARPENTER_ENABLED:-false}"
 export HEALTHCHECKS_ENABLED="${HEALTHCHECKS_ENABLED:-false}"
 export CUSTOMER_PINGONE_ENABLED="${CUSTOMER_PINGONE_ENABLED:-false}"
 
@@ -1083,7 +1077,6 @@ echo "Using IRSA_INGRESS_ANNOTATION_KEY_VALUE: ${IRSA_INGRESS_ANNOTATION_KEY_VAL
 echo "Using CLUSTER_ENDPOINT: ${CLUSTER_ENDPOINT}"
 echo "Using KARPENTER_INSTANCE_PROFILE: ${KARPENTER_INSTANCE_PROFILE}"
 echo "Using KARPENTER_CONTROLLER_IAM_ROLE: ${KARPENTER_CONTROLLER_IAM_ROLE}"
-echo "Using KARPENTER_ENABLED: ${KARPENTER_ENABLED}"
 echo "Using DEFAULT_CLUSTER_UPTIME: ${DEFAULT_CLUSTER_UPTIME}"
 
 echo "Using KARPENTER_ROLE_ANNOTATION_KEY_VALUE: ${KARPENTER_ROLE_ANNOTATION_KEY_VALUE}"
@@ -1393,6 +1386,7 @@ for ENV_OR_BRANCH in ${SUPPORTED_ENVIRONMENT_TYPES}; do
     echo >> "${BASE_ENV_VARS}"
     echo "IS_BELUGA_ENV=true" >> "${BASE_ENV_VARS}"
 
+    sed -i.bak -e "/karpenter/ s|^#*|#|g" "${K8S_CONFIGS_DIR}/base/cluster-tools/kustomization.yaml"
     sed -i.bak -e "/disable-kubedownscaler/ s|^#*|#|g" "${K8S_CONFIGS_DIR}/base/cluster-tools/kube-downscaler/kustomization.yaml"
 
     rm -f "${K8S_CONFIGS_DIR}/base/cluster-tools/karpenter/kustomization.yaml.bak"

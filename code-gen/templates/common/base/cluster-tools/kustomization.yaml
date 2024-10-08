@@ -16,4 +16,4 @@ resources:
 - health
 - pgo
 - kube-downscaler
-#- karpenter-feature
+#- karpenter
