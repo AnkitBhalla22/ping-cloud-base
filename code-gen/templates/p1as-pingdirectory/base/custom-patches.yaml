@@ -1,7 +1,34 @@
 ### PS/GSO customizations to OOTB resources should only go into this file. Otherwise, CSR auto-updates will break. ###
 
 ### Always leave in at least this customization. Otherwise, kustomize will complain about an empty patch file. ###
-apiVersion: v1
-kind: ConfigMap
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
-  name: pingdirectory-custom-placeholder-base
+  name: pingdirectory
+  labels:
+    class: pingdirectory-server
+spec:
+  template:
+    spec:
+      volumes:
+        - name: out-dir
+          persistentVolumeClaim:
+            claimName: new-pvc          
+  volumeClaimTemplates:
+    - metadata:
+        name: new-pvc
+        annotations:
+          # This annotation is required to prevent volume-autoscaler to resize this volume
+          volume.autoscaler.kubernetes.io/ignore: "true"
+        labels:
+          class: pingdirectory-server
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: pingdirectory-gp3
+        resources:
+          requests:
+            storage: 40Gi
