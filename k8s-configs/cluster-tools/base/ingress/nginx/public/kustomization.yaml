@@ -73,10 +73,17 @@ patchesJson6902:
     version: v1
     kind: Deployment
     name: nginx-ingress-controller
+- path: add-maintenance-cm.yaml
+  target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: nginx-ingress-controller
+    namespace: ingress-nginx-public
+    
 
 patchesStrategicMerge:
 - add-init-container.yaml
-- add-maintenance-cm.yaml
 
 # Add annotation to IngressClass
 patches:

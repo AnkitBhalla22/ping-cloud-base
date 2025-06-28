@@ -1,17 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-ingress-controller
-spec:
-  template:
-    spec:
-      containers:
-      - name: controller
-        volumeMounts:
-        - name: maintenance-volume
-          mountPath: /etc/nginx/maintenance
-          readOnly: true
-      volumes:
-      - name: maintenance-volume
-        configMap:
-          name: maintenance
+- op: add
+  path: /spec/template/spec/volumes/-
+  value:
+    name: maintenance
+    configMap:
+      name: maintenance
+
+- op: add
+  path: /spec/template/spec/containers/0/volumeMounts/-
+  value:
+    name: maintenance
+    mountPath: /etc/nginx/maintenance/
+    readOnly: true
