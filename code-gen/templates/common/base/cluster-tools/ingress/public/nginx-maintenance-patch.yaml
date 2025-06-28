@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+  namespace: ingress-nginx-public
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx-ingress-controller # Update this if your container has a different name
+          volumeMounts:
+            - name: maintenance-volume
+              mountPath: /config/maintenance
+              subPath: maintenance
+              readOnly: true
+      volumes:
+        - name: maintenance-volume
+          configMap:
+            name: maintenance

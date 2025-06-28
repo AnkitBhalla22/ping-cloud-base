@@ -11,6 +11,15 @@ configMapGenerator:
     - SSM_PATH_DHPARAM=/pcpt/beluga/ingress-keys/ingress-nginx-public
     - REGION=${REGION}
 
+configMapGenerator:
+  - name: maintenance
+    namespace: ingress-nginx-public
+    files:
+      - maintenance  # This should be a file named `maintenance` in the same directory
+
+generatorOptions:
+  disableNameSuffixHash: true  # Ensures the name stays as 'maintenance
+
 patchesStrategicMerge:
 
 ### Assign Elastic IP addresses to the ingress-nginx-public Network Load Balancer by adding the annotation ###
