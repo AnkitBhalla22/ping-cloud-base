@@ -21,6 +21,3 @@ data:
         end
       }
     }
-    if ( -f /config/maintenance && $host ~* "(pingfederate-admin|pingaccess-admin|pingaccess-was-admin)") {
-      return 403 '{"status":403,"message":"Access Denied"}';
-    }
