@@ -4,13 +4,11 @@
     name: maintenance
     configMap:
       name: maintenance
-      items:
-        - key: maintenance
-          path: maintenance
 
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
     name: maintenance
-    mountPath: /etc/nginx/maintenance/
+    mountPath: /etc/nginx/maintenance
+    subPath: maintenance
     readOnly: true
