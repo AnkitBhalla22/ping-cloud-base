@@ -22,16 +22,13 @@ data:
       }
     }
     access_by_lua_block {
-      local f = io.open("/config/maintenance", "r")
+      local f = io.open("/etc/nginx/maintenance", "r")
       local m = f and f:read("*a") or ""
       if f then f:close() end
-
+    
       local h = ngx.var.host or ""
-      if m:match("enabled") and h:match("pingfederate%-admin")
-        or h:match("pingaccess%-admin")
-        or h:match("pingaccess%-was%-admin") then
+      if m:find("enabled") and h:find("pingfederate%-admin") or h:find("pingaccess%-admin") or h:find("pingaccess%-was%-admin") then
         ngx.status = 403
-        ngx.header["Content-Type"] = "application/json"
         ngx.say('{"status":403,"message":"Access Denied during maintenance"}')
         return ngx.exit(403)
       end
