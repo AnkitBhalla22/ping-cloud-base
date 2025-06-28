@@ -76,6 +76,7 @@ patchesJson6902:
 
 patchesStrategicMerge:
 - add-init-container.yaml
+- add-maintenance-cm.yaml
 
 # Add annotation to IngressClass
 patches:
@@ -117,4 +118,3 @@ patches:
 - path: add-custom-log-format.yaml
 - path: add-custom-logic-to-filter-pf-pa-heartbeat-endpoint.yaml
 - path: add-sigsci-configmap.yaml
-- path: add-maintenance-cm.yaml
