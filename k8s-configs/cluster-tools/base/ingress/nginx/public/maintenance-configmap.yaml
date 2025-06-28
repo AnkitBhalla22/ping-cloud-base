@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maintenance
+  annotations:
+    argocd.argoproj.io/sync-options: Skip
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+data:
+  maintenance: "disabled"

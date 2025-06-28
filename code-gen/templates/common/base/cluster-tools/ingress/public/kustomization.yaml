@@ -10,16 +10,6 @@ configMapGenerator:
   literals:
     - SSM_PATH_DHPARAM=/pcpt/beluga/ingress-keys/ingress-nginx-public
     - REGION=${REGION}
-    
-- name: maintenance
-  namespace: ingress-nginx-public
-  literals:
-    - maintenance=disabled
-  options:
-    disableNameSuffixHash: true
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-options: Skip
 
 patchesStrategicMerge:
 
