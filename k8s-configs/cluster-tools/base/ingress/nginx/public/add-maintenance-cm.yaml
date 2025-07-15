@@ -1,14 +1,14 @@
 - op: add
   path: /spec/template/spec/volumes/-
   value:
-    name: maintenance
+    name: maintenance-mode
     configMap:
-      name: maintenance
+      name: maintenance-mode
 
 - op: add
   path: /spec/template/spec/containers/0/volumeMounts/-
   value:
-    name: maintenance
-    mountPath: /etc/nginx/maintenance
-    subPath: maintenance
+    name: maintenance-mode
+    mountPath: /etc/nginx/maintenance-mode
+    subPath: maintenance-mode
     readOnly: true

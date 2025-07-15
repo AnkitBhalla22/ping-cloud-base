@@ -22,7 +22,7 @@ data:
       }
     }
     access_by_lua_block {
-      local f = io.open("/etc/nginx/maintenance", "r")
+      local f = io.open("/etc/nginx/maintenance-mode", "r")
       local m = f and f:read("*a") or ""
       if f then f:close() end
     
