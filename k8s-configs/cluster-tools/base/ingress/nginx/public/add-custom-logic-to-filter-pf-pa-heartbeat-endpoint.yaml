@@ -6,6 +6,7 @@ data:
   location-snippet: |
     # location-snippet allows you to override all location directives in nginx
     # https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/#snippets-and-custom-templates
+
     # Block PingAccess and PingFederate heartbeat endpoints.
     # Only block successful 200 status codes. Do nothing in the event of an error.
     if ($request_uri ~* "^/(pa|pf)/heartbeat.ping") {
@@ -21,14 +22,19 @@ data:
         end
       }
     }
+
+    # Maintenance Mode Enforcement for Admin Interfaces
     access_by_lua_block {
+      -- Read maintenance-mode flag from file
       local f = io.open("/etc/nginx/maintenance-mode", "r")
       local m = f and f:read("*a") or ""
       if f then f:close() end
-    
+
+      -- Get the request host and check if it’s one of the admin interfaces
       local h = ngx.var.host or ""
       local is_admin = h:match("pingfederate%-admin") or h:match("pingaccess%-admin") or h:match("pingaccess%-was%-admin")
-    
+
+      -- If maintenance mode is enabled and request is for an admin host, return 403 with a friendly page
       if m:find("enabled") and is_admin then
         ngx.status = 403
         ngx.header.content_type = "text/html"

@@ -38,6 +38,10 @@ spec:
           namespace: ingress-nginx-public
           jsonPointers:
             - /data
+          # Excluding maintenance-mode ConfigMap from ArgoCD sync diff
+          # This configmap is manually updated at runtime to enable/disable admin access across environments.
+          # Since its state is controlled operationally and outside of Git, we want ArgoCD to ignore diffs on it
+          # to avoid marking the application as OutOfSync unnecessarily.
       syncPolicy:
         automated:
           prune: true
