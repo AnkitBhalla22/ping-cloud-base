@@ -6,4 +6,4 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 data:
-  maintenance: "disabled"
+  maintenance-mode: "disabled"
