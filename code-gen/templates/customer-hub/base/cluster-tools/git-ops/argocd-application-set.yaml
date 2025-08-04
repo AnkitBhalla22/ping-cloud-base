@@ -32,12 +32,6 @@ spec:
           kind: Job
           jsonPointers:
             - /spec/ttlSecondsAfterFinished
-        - group: ""
-          kind: ConfigMap
-          name: maintenance-mode
-          namespace: ingress-nginx-public
-          managedFieldsManagers:
-            - kubectl
       syncPolicy:
         automated:
           prune: true
@@ -116,8 +110,8 @@ spec:
           kind: ConfigMap
           name: maintenance-mode
           namespace: ingress-nginx-public
-          managedFieldsManagers:
-            - kubectl
+          jsonPointers:
+            - /data
       syncPolicy:
         automated:
           prune: true
