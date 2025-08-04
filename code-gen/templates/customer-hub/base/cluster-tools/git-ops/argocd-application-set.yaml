@@ -36,8 +36,8 @@ spec:
           kind: ConfigMap
           name: maintenance-mode
           namespace: ingress-nginx-public
-          jsonPointers:
-            - /
+          managedFieldsManagers:
+            - kubectl
       syncPolicy:
         automated:
           prune: true
@@ -116,8 +116,8 @@ spec:
           kind: ConfigMap
           name: maintenance-mode
           namespace: ingress-nginx-public
-          jsonPointers:
-            - /
+          managedFieldsManagers:
+            - kubectl
       syncPolicy:
         automated:
           prune: true
