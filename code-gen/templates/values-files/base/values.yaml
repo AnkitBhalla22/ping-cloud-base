@@ -223,7 +223,7 @@ global:
 
   # !!! Provisioning for PingFederate is not yet available for multi-region customers !!!
   # Runbook: https://confluence.pingidentity.com/display/PingCloud/How+to+Enable+and+Configure+PingFederate+Provisioning
-  pfProvisioningEnabled: ${PF_PROVISIONING_ENABLED}
+  pfProvisioningEnabled: false
   delegatedAdminEnabled: true
 
   # Runbook: https://pingidentity.atlassian.net/wiki/spaces/PDA/pages/427688292/How+to+Enable+and+Disable+Healthchecks+-+1.19.0
