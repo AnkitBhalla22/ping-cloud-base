@@ -90,6 +90,10 @@ pingfederate:
         maxReplicas: 2
         averageUtilization: 70
 
+  # Outbound provisioning settings
+  provisioning:
+    # Secret path for storing Provisioning RDS database details
+    provisioningRdsDetails: "ssm://aws/reference/secretsmanager//pcpt/ping-federate/dbserver"
 
   # Periodic CronJob settings for backing up PingFederate Admin
   periodicBackupCronJob:
