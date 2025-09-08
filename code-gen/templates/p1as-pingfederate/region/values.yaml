@@ -93,7 +93,7 @@ pingfederate:
   # Outbound provisioning settings
   provisioning:
     # Secret path for storing Provisioning RDS database details
-    provisioningRdsDetails: "ssm://aws/reference/secretsmanager//pcpt/ping-federate/dbserver"
+    provisioningRdsDetails: "${PF_RDS_SECRET_PATH}"
 
   # Periodic CronJob settings for backing up PingFederate Admin
   periodicBackupCronJob:
