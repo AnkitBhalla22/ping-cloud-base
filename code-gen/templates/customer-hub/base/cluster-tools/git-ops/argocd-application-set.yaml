@@ -109,10 +109,10 @@ spec:
         server: "{{server}}"
       ignoreDifferences:
         # Ignore ingress allowlist annotations managed dynamically
-        - group: networking.k8s.io
-          kind: Ingress
-          jsonPointers:
-            - /metadata/annotations/nginx.ingress.kubernetes.io~1whitelist-source-range
+        # - group: networking.k8s.io
+        #   kind: Ingress
+        #   jsonPointers:
+        #     - /metadata/annotations/nginx.ingress.kubernetes.io~1whitelist-source-range
         - group: batch
           kind: Job
           jsonPointers:
