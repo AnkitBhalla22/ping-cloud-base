@@ -29,10 +29,10 @@ spec:
     spec:
       ignoreDifferences:
         # Ignore ingress allowlist annotations managed by the Self-Service API
-        - group: networking.k8s.io
-          kind: Ingress
-          jsonPointers:
-            - /metadata/annotations/nginx.ingress.kubernetes.io~1whitelist-source-range
+        # - group: networking.k8s.io
+        #   kind: Ingress
+        #   jsonPointers:
+        #     - /metadata/annotations/nginx.ingress.kubernetes.io~1whitelist-source-range
         # Ignore ephemeral TTL settings for Jobs
         - group: batch
           kind: Job
