@@ -48,3 +48,4 @@ patches:
           - --registry=txt
           - --publish-internal-services
           - --log-level=error
+          - --exclude-record-types=AAAA
