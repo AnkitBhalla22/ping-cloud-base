@@ -61,7 +61,6 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_cache heartbeat_cache;
       proxy_cache_valid 200 1s;
-      proxy_cache_key $scheme$proxy_host$request_uri;
       proxy_ignore_headers Cache-Control Expires Set-Cookie;
 spec:
   ingressClassName: nginx-public
