@@ -49,6 +49,7 @@ patches:
           - --registry=txt
           - --publish-internal-services
           - --log-level=error
+          - --exclude-record-types=AAAA
     - op: add
       path: /spec/template/spec/containers/0/securityContext
       value:
