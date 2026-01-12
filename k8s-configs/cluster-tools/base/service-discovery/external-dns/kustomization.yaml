@@ -28,6 +28,7 @@ patches:
       path: /spec/template/spec/securityContext
       value:
           fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
+          runAsNonRoot: true
     - op: add
       path: /spec/template/spec/containers/0/resources
       value:
@@ -48,4 +49,11 @@ patches:
           - --registry=txt
           - --publish-internal-services
           - --log-level=error
-          - --exclude-record-types=AAAA
+    - op: add
+      path: /spec/template/spec/containers/0/securityContext
+      value:
+          allowPrivilegeEscalation: false
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsUser: 65534
+          runAsGroup: 65534
