@@ -10,6 +10,16 @@ images:
   newName: ${ECR_REGISTRY_NAME}/pingcloud-apps/pingaccess${ECR_ENV}
   newTag: ${PINGACCESS_IMAGE_TAG}
 
+patchesStrategicMerge:
+  - remove-unneeded-ingresses.yaml
+- |-
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: pingaccess-gp3
+  parameters:
+    kmsKeyId: ${KMS_KEY_ARN}
+
 patchesJson6902:
 
 ### PingAccess Admin Last Update Config Map ###

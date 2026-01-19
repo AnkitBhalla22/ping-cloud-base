@@ -92,6 +92,23 @@ patchesStrategicMerge:
       additionalConfig:
         opensearch_security.openid.base_redirect_url: "https://logs.${DNS_ZONE}"
 
+- |-
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: logstash-gp3
+  parameters:
+    kmsKeyId: ${KMS_KEY_ARN}
+
+- |-
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: opensearch-gp3
+  parameters:
+    kmsKeyId: ${KMS_KEY_ARN}
+
+
 patchesJson6902:
 - target:
     kind: Service

@@ -10,6 +10,15 @@ images:
   newName: ${ECR_REGISTRY_NAME}/pingcloud-apps/pingdatasync${ECR_ENV}
   newTag: ${PINGDATASYNC_IMAGE_TAG}
 
+patchesStrategicMerge:
+- |-
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: pingdatasync-gp3
+  parameters:
+    kmsKeyId: ${KMS_KEY_ARN}
+
 patchesJson6902:
 
 ### pingdatasync Last Update Config Map ###
