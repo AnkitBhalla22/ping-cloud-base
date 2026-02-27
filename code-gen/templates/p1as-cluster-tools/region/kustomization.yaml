@@ -6,15 +6,21 @@ resources:
   - ../base/namespace.yaml
   - custom-resources
 
+helmGlobals:
+  configHome: /helm-working-dir
+  
 helmCharts:
   - name: p1as-cluster-tools
     releaseName: p1as-cluster-tools
     additionalValuesFiles:
       - ../../values-files/base/values.yaml   # base values.yaml
-      - ../../values-files/${REGION_NICK_NAME}/values.yaml   # regional values.yaml
+      - ../../values-files/us-west-2/values.yaml   # regional values.yaml
       - values.yaml   # app specific values.yaml
-    version: v2.3-release-branch-latest
-    repo: oci://${ECR_REGISTRY_NAME}/dev
+    version: v2.2-pdo10817-cve-fix-2.2.1-sm
+    valuesInline:
+      ecrRegistryName: "705370621539.dkr.ecr.us-west-2.amazonaws.com/dev"
+      profileBranch: pdo10817_cve_fix_2.2.1_sm
+    repo: oci://705370621539.dkr.ecr.us-west-2.amazonaws.com/dev
 
   # Needed to split Karpenter into its own helm chart since the upstream chart
   # does not allow namespace override
