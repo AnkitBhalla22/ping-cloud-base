@@ -21,7 +21,7 @@ generate_ssh_key_pair() {
   ssh-keygen -q -t rsa -b 2048 -f id_rsa -N ''
   export SSH_ID_PUB=$(cat id_rsa.pub)
   export SSH_ID_KEY_BASE64=$(base64_no_newlines id_rsa)
-  export SSH_ID_KEY=$(cat id_rsa)
+  export SSH_ID_KEY="$(cat id_rsa)"
   cd - > /dev/null
   rm -rf "${KEY_PAIR_DIR}"
 }

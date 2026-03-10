@@ -593,14 +593,14 @@ set_ssh_key_pair() {
   elif test -z "${SSH_ID_PUB_FILE}" && test -f "${SSH_ID_KEY_FILE}"; then
     echo 'This is an upgrade - using provided private key for SSH access. No public key available'
     export SSH_ID_KEY_BASE64=$(base64_no_newlines "${SSH_ID_KEY_FILE}")
-    export SSH_ID_KEY=$(cat "${SSH_ID_KEY_FILE}")
+    export SSH_ID_KEY="$(cat "${SSH_ID_KEY_FILE}")"
 
   # Both public file and key file provided
   elif test -f "${SSH_ID_PUB_FILE}" && test -f "${SSH_ID_KEY_FILE}"; then
     echo 'Using provided key-pair for SSH access'
     export SSH_ID_PUB=$(cat "${SSH_ID_PUB_FILE}")
     export SSH_ID_KEY_BASE64=$(base64_no_newlines "${SSH_ID_KEY_FILE}")
-    export SSH_ID_KEY=$(cat "${SSH_ID_KEY_FILE}")
+    export SSH_ID_KEY="$(cat "${SSH_ID_KEY_FILE}")"
 
   # Unsupported flow - no private key provided at all or not a file
   else
