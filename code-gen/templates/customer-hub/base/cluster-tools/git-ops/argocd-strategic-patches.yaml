@@ -81,16 +81,3 @@ metadata:
   name: bootstrap-serviceaccount
   annotations:
     ${IRSA_BOOTSTRAP_ANNOTATION_KEY_VALUE}
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: argo-git-deploy
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: ${CLUSTER_STATE_REPO_URL}
-  type: git
-  sshPrivateKey: |
-    ${SSH_ID_KEY}
