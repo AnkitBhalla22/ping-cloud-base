@@ -23,7 +23,7 @@ resources:
 patchesStrategicMerge:
 # generate-cluster-state.sh copies this from code-gen/templates/customer-hub/base/cluster-tools/git-ops/
 - argocd-strategic-patches.yaml
-- argo-repo-secret.yaml
+- argocd-repo-secret.yaml
 
 ### Deploy key to the cluster state repo ###
 
