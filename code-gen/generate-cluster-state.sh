@@ -1072,6 +1072,7 @@ set_ssh_key_pair
 
 # Get the known hosts contents for the cluster state repo host to pass it into the CD container.
 parse_url "${CLUSTER_STATE_REPO_URL}"
+export CLUSTER_STATE_REPO_URL_BASE64=$(printf "%s" "$CLUSTER_STATE_REPO_URL" | base64)
 echo "Obtaining known_hosts contents for cluster state repo host: ${URL_HOST}"
 
 if test ! "${KNOWN_HOSTS_CLUSTER_STATE_REPO}"; then
