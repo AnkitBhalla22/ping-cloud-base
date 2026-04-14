@@ -29,11 +29,8 @@
 - Implement KMS changes for EBS
 - Add p1as-observability prometheus Helm chart to PCB
 - Update prometheus-job-exporter and prometheus-json-exporter image paths (v3.0.0) as part of migrating to ping-cloud-common repo
-<<<<<<< HEAD
 - Update seal-secret-values.py to handle customSecrets entries for Helm charts
-=======
 - Remove metrics-server and kube-state-metrics from PCB
->>>>>>> 247c57637 (addons)
 
 _Changes:_
 
