@@ -32,6 +32,17 @@ ingress-nginx-private:
         maxReplicas: 1
         targetCPUUtilizationPercentage: 70
 
+# sealed-secrets subchart values
+sealed-secrets:
+  sealed-secrets:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 100Mi
+      requests:
+        cpu: 500m
+        memory: 100Mi
+
 # Karpenter configuration
 karpenterController:
   settings:
