@@ -8,6 +8,7 @@ resources:
 - service-discovery
 - logging
 - monitoring
+# - security  # PDO-10506: sealed-secrets moved to p1as-cluster-tools Helm sub-chart
 - pod-reaper
 - health
 - kube-downscaler
