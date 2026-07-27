@@ -9,6 +9,14 @@ resources:
 # Deploy cert-manager as part of the bootstrap process so that it's running before its CRD resources are created
 - ${K8S_GIT_URL}/k8s-configs/cluster-tools/base/cert-manager/base?ref=${K8S_GIT_BRANCH}
 
+# generate-cluster-state.sh copies this from code-gen/templates/fluxcd/common/
+# The minimal bootstrap required for the ping-cloud stack
+- ping-cloud.yaml
+
+# generate-cluster-state.sh copies this from code-gen/templates/customer-hub/base/cluster-tools/git-ops/
+# Create all argo applications
+- argocd-application-set.yaml
+
 # PDO-10506: Deploy sealed-secrets via Helm as part of bootstrap so it is available before the ping-cloud stack starts
 helmCharts:
   - name: p1as-cluster-tools
@@ -23,14 +31,6 @@ helmCharts:
         karpenterCrdEnabled: false
     version: ${K8S_GIT_BRANCH}
     repo: oci://${ECR_REGISTRY_NAME}/dev
-
-# generate-cluster-state.sh copies this from code-gen/templates/fluxcd/common/
-# The minimal bootstrap required for the ping-cloud stack
-- ping-cloud.yaml
-
-# generate-cluster-state.sh copies this from code-gen/templates/customer-hub/base/cluster-tools/git-ops/
-# Create all argo applications
-- argocd-application-set.yaml
 
 patchesStrategicMerge:
 # generate-cluster-state.sh copies this from code-gen/templates/customer-hub/base/cluster-tools/git-ops/
