@@ -22,5 +22,5 @@ helmCharts:
         ingressNginxPrivateEnabled: false
         karpenterEnabled: false
         karpenterCrdEnabled: false
-    version: ${K8S_GIT_BRANCH}
+    version: 2.4-release-branch-latest
     repo: oci://${ECR_REGISTRY_NAME}/dev
